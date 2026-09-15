@@ -1,0 +1,244 @@
+@import "tailwindcss";
+@import "leaflet/dist/leaflet.css";
+
+@theme {
+  --font-sans: "Figtree", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Newsreader", ui-serif, Georgia, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --color-bg: #0e0f0e;
+  --color-surface: #171816;
+  --color-surface-2: #1f201e;
+  --color-fg: #f2f0ea;
+  --color-muted: #8e8c84;
+  --color-subtle: #6b6a64;
+  --color-border: #2c2c28;
+  --color-accent: #e7e2d6;
+  --color-accent-fg: #141412;
+  --color-go: #8fad8c;
+  --color-caution: #c4a574;
+  --color-nogo: #c17b6a;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  --shadow-border: 0 0 0 1px rgb(255 255 255 / 0.08);
+  --shadow-border-hover: 0 0 0 1px rgb(255 255 255 / 0.14);
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-smooth-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-micro: 80ms;
+  --motion-quick: 150ms;
+  --motion-fast: 250ms;
+  --motion-slow: 400ms;
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body,
+  #app {
+    min-height: 100%;
+    background: var(--color-bg);
+    color: var(--color-fg);
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+.leaflet-container {
+  background: var(--color-bg);
+  font-family: var(--font-sans);
+  color: var(--color-fg);
+}
+
+.leaflet-control-attribution {
+  background: transparent !important;
+  color: var(--color-subtle) !important;
+  font-size: 10px;
+  max-width: 55%;
+}
+
+.leaflet-control-zoom a {
+  background: var(--color-surface) !important;
+  color: var(--color-fg) !important;
+  border: none !important;
+  width: 36px !important;
+  height: 36px !important;
+  line-height: 36px !important;
+}
+
+.leaflet-bar {
+  border: none !important;
+  box-shadow: var(--shadow-border) !important;
+  border-radius: 10px !important;
+  overflow: hidden;
+}
+
+.leaflet-div-icon.feasify-divicon {
+  background: transparent;
+  border: none;
+}
+
+.feasify-pin {
+  background: var(--color-nogo);
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  box-shadow: 0 0 0 4px rgb(193 123 106 / 0.35), 0 0 0 1px #fff;
+}
+
+.shimmer {
+  color: var(--color-muted);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .shimmer {
+    background-image: linear-gradient(
+      90deg,
+      var(--color-muted) 0%,
+      var(--color-fg) 45%,
+      var(--color-muted) 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer-sweep 1.8s linear infinite;
+  }
+}
+
+@keyframes shimmer-sweep {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media print {
+  html,
+  body,
+  #app {
+    background: #fff !important;
+    color: #141412 !important;
+    height: auto !important;
+    min-height: 0 !important;
+    overflow: visible !important;
+  }
+
+  #print-report {
+    display: block !important;
+    max-width: 180mm;
+    margin: 0 auto;
+    padding: 12mm 0 18mm;
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 11pt;
+    line-height: 1.45;
+    color: #141412;
+  }
+
+  #print-report h1 {
+    font-size: 22pt;
+    margin: 0.2em 0 0.4em;
+  }
+
+  #print-report h2 {
+    font-size: 13pt;
+    margin: 1.4em 0 0.4em;
+    border-bottom: 1px solid #d7d4cc;
+    padding-bottom: 0.2em;
+    page-break-after: avoid;
+  }
+
+  #print-report h3 {
+    font-size: 11pt;
+    margin: 0.8em 0 0.3em;
+  }
+
+  #print-report p,
+  #print-report li {
+    font-family: "Figtree", system-ui, sans-serif;
+    font-size: 10pt;
+  }
+
+  #print-report table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0.6em 0 1em;
+    font-family: "Figtree", system-ui, sans-serif;
+    font-size: 10pt;
+  }
+
+  #print-report th,
+  #print-report td {
+    text-align: left;
+    vertical-align: top;
+    padding: 0.35em 0.5em;
+    border-bottom: 1px solid #e6e3db;
+  }
+
+  #print-report th {
+    width: 32%;
+    color: #5c5a54;
+    font-weight: 500;
+  }
+
+  .print-kicker,
+  .print-meta {
+    font-family: "Figtree", system-ui, sans-serif;
+    font-size: 9pt;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #6b6a64;
+  }
+
+  .print-verdict {
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 12pt;
+    margin: 0.6em 0;
+  }
+
+  #print-report footer {
+    margin-top: 2em;
+    font-family: "Figtree", system-ui, sans-serif;
+    font-size: 8.5pt;
+    color: #6b6a64;
+  }
+
+  .print-cover {
+    margin-bottom: 1.5em;
+    padding-bottom: 1em;
+    border-bottom: 2px solid #141412;
+  }
+}

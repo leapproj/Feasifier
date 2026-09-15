@@ -1,0 +1,38 @@
+{
+  "url": "http://127.0.0.1:8081/",
+  "viewports": {
+    "desktop": {
+      "width": 1280,
+      "height": 800,
+      "status": 200,
+      "title": "Feasify",
+      "hasCanvas": false,
+      "bodyTextLen": 469,
+      "bodyTextHash": "6174f210b6d6ae429b7c553a345f0305366b8c1bd1b4e46460b05346e2af2e1c",
+      "bodyTextPrefix": "Feasify Site research studio New study SAVED Pin a site and gene",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built.png"
+    },
+    "mobile": {
+      "width": 390,
+      "height": 844,
+      "status": 200,
+      "title": "Feasify",
+      "hasCanvas": false,
+      "bodyTextLen": 469,
+      "bodyTextHash": "6174f210b6d6ae429b7c553a345f0305366b8c1bd1b4e46460b05346e2af2e1c",
+      "bodyTextPrefix": "Feasify Site research studio New study SAVED Pin a site and gene",
+      "horizontalOverflow": false,
+      "consoleErrors": [],
+      "pageErrors": [],
+      "screenshot": "/workspace/screenshots/app-builder-built-mobile.png"
+    }
+  },
+  "brandWarnings": [],
+  "authWarnings": [],
+  "verdictFile": "/workspace/screenshots/app-builder-built.json",
+  "divergesFromBaseline": false,
+  "baselineReasons": []
+}
